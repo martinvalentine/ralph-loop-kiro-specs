@@ -4,6 +4,12 @@
 
 Ralph Loop is an automated, iterative agent runner that drives spec-based development in [Kiro](https://kiro.dev). It wraps the `kiro-cli` in a bash loop, feeding it a carefully engineered prompt that turns Kiro into a disciplined, self-correcting implementation agent — one that picks up tasks from a spec, implements them, verifies its own work, and learns from its mistakes across iterations.
 
+## Dashboard Example
+
+When all tasks are complete, Ralph generates a self-contained `summary.html` dashboard:
+
+![Ralph Loop Dashboard](images/ralp-loop-kiro-specs-dashboard.png)
+
 ## What is the Ralph Loop?
 
 Most AI coding workflows are one-shot: you give the agent a prompt, it produces code, and you manually review and iterate. The Ralph Loop flips this model. Instead of a single prompt-response cycle, Ralph runs Kiro repeatedly in a loop — each iteration picks up exactly one task from a structured task list, implements it fully, verifies it against exit criteria, and records what it learned. The next iteration reads those learnings before starting its own task.
