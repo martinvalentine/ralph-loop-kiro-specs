@@ -10,9 +10,21 @@ You must implement exactly ONE top-level task per invocation. This is non-negoti
 - If you catch yourself thinking "I can also knock out task N while I'm here" — STOP implementing. That is exactly the behavior this rule prohibits. Move on to verification and tracking for your one task.
 - Violating this constraint invalidates the entire run.
 
+## ⚠️ EFFICIENCY CONSTRAINT — READ THIS SECOND
+
+You are being called repeatedly inside an automated loop. Each invocation costs real API quota. To protect the account running this loop:
+
+- Do not read files you don't need for your one task. Read only what Phase 1 requires plus files directly relevant to the chosen task.
+- Do not re-explore the codebase speculatively. If you already know where something is from context, don't re-read it unnecessarily.
+- Do not run commands that are not required by the task or its verification. Avoid exploratory shells, broad directory listings, or test runs unrelated to the current task.
+- Keep your implementation focused. Scope creep increases token usage and loop duration, which increases the risk of backend rate-limit suspension.
+
 ## Phase 1: Load Context
 
-Read the following files to understand the project. Skip any that don't exist.
+Read the following files to understand the project.
+
+**Steering files** — these provide critical project context. If any are missing, do NOT skip silently:
+- If a steering file is missing, log a visible warning at the start of your response (e.g., `⚠️ WARNING: .kiro/steering/product.md not found — proceeding without product context`), then continue. Do not abort, but note that implementation quality may be reduced without this context.
 
 1. `.kiro/steering/product.md` — what the product is
 2. `.kiro/steering/structure.md` — project structure conventions
